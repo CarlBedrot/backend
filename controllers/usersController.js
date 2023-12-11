@@ -24,6 +24,7 @@ exports.addUser = (req, res) => {
 
 
 exports.updateSpirit = (req, res) => {
+  console.log('Received ID:', req.body.id); // Log the received ID
   User.findById(req.body.id)
     .then(user => {
       if (!user) {
