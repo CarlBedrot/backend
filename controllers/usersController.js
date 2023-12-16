@@ -8,6 +8,29 @@ exports.getAllUsers = (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 };
 
+// Add this to your usersController.js
+
+exports.getUserStats = (req, res) => {
+  const userId = req.params.id;
+  console.log('Fetching user stats for user:', userId);
+
+  User.findById(userId)
+    .then(user => {
+      if (!user) {
+        console.log('User not found:', userId);
+        return res.status(404).json({ message: "User not found." });
+      }
+
+      console.log('User found:', user);
+      console.log('Sending user stats:', user.spirits);
+      res.json(user.spirits);
+    })
+    .catch(err => {
+      console.error('Error fetching user:', err);
+      res.status(400).json({ message: 'Error: ' + err });
+    });
+};
+
 exports.addUser = (req, res) => {
   const { name } = req.body;
 
