@@ -54,6 +54,10 @@ exports.updateSpirit = (req, res) => {
         return res.status(404).json({ message: "User not found." });
       }
 
+      /**
+       * Represents an array of valid spirit types.
+       * @type {string[]}
+       */
       const validSpiritTypes = Object.keys(user.spirits);
       const { spiritType, amount } = req.body;
 
